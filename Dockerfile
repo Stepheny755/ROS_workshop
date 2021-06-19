@@ -1,32 +1,15 @@
-FROM ubuntu:20.04
+FROM dorowu/ubuntu-desktop-lxde-vnc:focal
 
-WORKDIR /app
+RUN apt update && apt install -y \
+curl \
+gnupg2 \
+lsb-release
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-RUN apt-get update && apt-get upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
- xfce4 \
- xfce4-goodies \
- tightvncserver \
- locales
+RUN apt update && apt install -y \
+ros-foxy-desktop \
+python3-argcomplete
 
-WORKDIR /root/
-
-RUN mkdir -p /root/.vnc
-COPY xstartup /root/.vnc/
-RUN chmod a+x /root/.vnc/xstartup
-RUN touch /root/.vnc/passwd
-RUN /bin/bash -c "echo -e 'password\npassword\nn' | vncpasswd" > /root/.vnc/passwd
-RUN chmod 400 /root/.vnc/passwd
-RUN chmod go-rwx /root/.vnc
-RUN touch /root/.Xauthority
-
-COPY start-vncserver.sh /root/
-RUN chmod a+x /root/start-vncserver.sh
-
-RUN echo "mycontainer" > /etc/hostname
-RUN echo "127.0.0.1	localhost" >> /etc/hosts
-RUN echo "127.0.0.1	mycontainer" >> /etc/hosts
-
-EXPOSE 5901
-ENV USER root
-CMD [ "/root/start-vncserver.sh" ]
+RUN echo "source /opt/ros/foxy/setup.bash" >> .bashrc
+EXPOSE 5900
