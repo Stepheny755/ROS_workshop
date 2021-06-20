@@ -20,9 +20,12 @@ Please follow [this link for Docker Linux setup](https://docs.docker.com/engine/
 
 ## Container Setup
 
-Setting up the actual docker-ros-vnc container.
+Setting up the actual docker-ros-vnc container. There are two ways to setup the docker container:
 
-### Quick Start (Docker Image)
+* Installing from Docker Image (quick option)
+* Installing from dockerfile
+
+### Buliding from Image
 
 Docker image to come!
 
