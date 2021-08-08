@@ -25,9 +25,18 @@ Setting up the actual docker-ros-vnc container. There are two ways to setup the 
 * Installing from Docker Image (quick option)
 * Installing from dockerfile
 
-### Buliding from Image
+### Building from Image
 
-Docker image to come!
+1. Pull the image from dockerhub.
+```
+docker pull stepheny755/docker-ros-vns:latest
+```
+
+2. Run the command below to start the docker container. Note that VNC viewer access is provided over port `6080`
+```shell
+docker run -it -p 6080:80 docker-ros-vnc
+```
+
 
 ### Building from Dockerfile
 
