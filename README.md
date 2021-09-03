@@ -37,6 +37,8 @@ docker pull stepheny755/docker-ros-vns:latest
 docker run -it -p 6080:80 stepheny755/docker-ros-vnc
 ```
 
+3. The VNC instance can be accessed at http://127.0.0.1:6080/ in any web browser
+
 
 ### Building from Dockerfile
 
