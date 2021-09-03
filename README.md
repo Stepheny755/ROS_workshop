@@ -34,7 +34,7 @@ docker pull stepheny755/docker-ros-vns:latest
 
 2. Run the command below to start the docker container. Note that VNC viewer access is provided over port `6080`
 ```shell
-docker run -it -p 6080:80 docker-ros-vnc
+docker run -it -p 6080:80 stepheny755/docker-ros-vnc
 ```
 
 
