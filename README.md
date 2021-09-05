@@ -34,7 +34,7 @@ docker pull stepheny755/docker-ros-vns:latest
 
 2. Run the command below to start the docker container. Note that VNC viewer access is provided over port `6080`
 ```shell
-docker run -it -p 6080:80 stepheny755/docker-ros-vnc
+docker run --mount source=ros_workshop,target=/root -it -p 6080:80 stepheny755/docker-ros-vnc
 ```
 
 3. The VNC instance can be accessed at http://127.0.0.1:6080/ in any web browser
@@ -57,7 +57,11 @@ docker build -t docker-ros-vnc .
 
 3. Run the command below to start the docker container. Note that VNC viewer access is provided over port `6080`
 ```shell
-docker run -it -p 6080:80 docker-ros-vnc
+docker run --mount source=ros_workshop,target=/root -it -p 6080:80 docker-ros-vnc
 ```
 
 4. The VNC instance can be accessed at http://127.0.0.1:6080/ in any web browser
+
+## Persistent Storage
+
+Docker Volumes are created for the /root folder (~/) folder by default. Files stored in the ~/ directory will be saved accross each launch of the container. You can change the directory to bind to the volume by editing the path in the `target` parameter of the `--mount` flag in the `docker run` command.
